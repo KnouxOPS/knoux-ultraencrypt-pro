@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+     "types": ["node"] // Added node types for broader compatibility if any Node.js specific types are used in shared code
+  },
+  "include": ["src", "index.tsx", "types.ts", "constants.ts", "contexts/AppContext.tsx", "components/**/*.tsx", "pages/**/*.tsx", "App.tsx", "electron/preload.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

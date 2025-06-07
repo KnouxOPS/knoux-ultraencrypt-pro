@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Electron supports modern JS
+    "module": "commonjs", // Electron main process uses CommonJS
+    "lib": ["ES2020"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./", // Output .js files next to .ts files
+    "rootDir": "./",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true, // Useful for debugging main process
+    "types": ["node"] // Crucial for Node.js and Electron types
+  },
+  "include": ["./**/*.ts"], // Compile all .ts files in the electron folder
+  "exclude": ["node_modules", "../node_modules"]
+}

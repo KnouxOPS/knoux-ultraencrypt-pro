@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KNOUX UltraEncrypt Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=El+Messiri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'knoux-dark-primary': '#7C3AED',    // Purple-600
+            'knoux-dark-secondary': '#3B82F6',  // Blue-500
+            'knoux-dark-surface': '#1F2937',  // Gray-800
+            'knoux-dark-bg': '#111827',       // Gray-900
+            'knoux-light-primary': '#8B5CF6',   // Purple-500
+            'knoux-light-secondary': '#60A5FA', // Blue-400
+            'knoux-light-surface': '#F9FAFB', // Gray-50
+            'knoux-light-bg': '#F3F4F6',      // Gray-100
+            'knoux-icy-blue': '#7DF9FF',        // Icy Blue Neon
+            'knoux-icy-blue-glow': '#3CFBF1',   // Icy Blue Neon Glow variant
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            elmessiri: ['"El Messiri"', 'serif'],
+            amiri: ['Amiri', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar for webkit browsers */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      @apply bg-gray-500 dark:bg-gray-500;
+    }
+    /* For Firefox */
+    .custom-scrollbar {
+      scrollbar-width: thin; /* "auto" or "thin" */
+      scrollbar-color: #9CA3AF #transparent; /* thumb and track */
+    }
+    .dark .custom-scrollbar {
+       scrollbar-color: #4B5563 #transparent;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "uuid": "https://esm.sh/uuid@^11.1.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.16.0",
+    "react-icons/": "https://esm.sh/react-icons@^5.5.0/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.2",
+    "node-forge": "https://esm.sh/node-forge@1.3.1",
+    "react-dropzone": "https://esm.sh/react-dropzone@^14.3.8",
+    "electron": "https://esm.sh/electron@^36.4.0",
+    "path": "https://esm.sh/path@^0.12.7",
+    "fs": "https://esm.sh/fs@^0.0.1-security"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

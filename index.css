@@ -1,0 +1,211 @@
+/* Global styles if needed - Tailwind is primarily utility-first */
+
+:root {
+  --knoux-neon-primary: #7C3AED; /* Purple-600 */
+  --knoux-neon-secondary: #3B82F6; /* Blue-500 */
+  --knoux-neon-danger: #EF4444; /* Red-500 */
+  --knoux-neon-success: #10B981; /* Green-500 */
+  --knoux-neon-warning: #F59E0B; /* Amber-500 */
+  --knoux-neon-icy-blue: #7DF9FF; /* Icy Blue Neon */
+
+  /* Deep Neon Glows - More intense and layered, now multi-tone */
+  --knoux-glow-primary-deep: 
+    0 0 3px var(--knoux-neon-primary),
+    0 0 6px var(--knoux-neon-primary),
+    0 0 9px var(--knoux-neon-icy-blue), /* Icy blue layer */
+    0 0 12px rgba(124, 58, 237, 0.6), /* Softer primary outer */
+    0 0 15px rgba(125, 249, 255, 0.4); /* Softer icy outer */
+  
+  --knoux-glow-secondary-deep:
+    0 0 3px var(--knoux-neon-secondary),
+    0 0 6px var(--knoux-neon-secondary),
+    0 0 9px var(--knoux-neon-icy-blue), /* Icy blue layer */
+    0 0 12px rgba(59, 130, 246, 0.6),  /* Softer secondary outer */
+    0 0 15px rgba(125, 249, 255, 0.4); /* Softer icy outer */
+
+  --knoux-glow-danger-deep:
+    0 0 3px var(--knoux-neon-danger),
+    0 0 6px var(--knoux-neon-danger),
+    0 0 9px var(--knoux-neon-icy-blue), /* Icy blue layer for contrast */
+    0 0 12px rgba(239, 68, 68, 0.6),   /* Softer danger outer */
+    0 0 15px rgba(125, 249, 255, 0.3); /* Softer icy outer */
+  
+  --knoux-glow-danger-pulse-intensity: 20px; /* Adjusted for new layered effect */
+
+  --knoux-glow-icy-blue-deep:
+    0 0 3px var(--knoux-neon-icy-blue),
+    0 0 6px var(--knoux-neon-icy-blue),
+    0 0 9px var(--knoux-neon-icy-blue),
+    0 0 12px rgba(125, 249, 255, 0.6); /* Softer outer icy glow */
+
+  /* Simpler Glow for focus rings or less intense elements */
+  --knoux-glow-focus-ring: 
+    0 0 0 2px var(--knoux-neon-primary), 
+    0 0 0 4px var(--knoux-neon-icy-blue); /* Multi-tone focus ring */
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--knoux-neon-secondary); /* Using secondary for scrollbar thumb */
+  @apply rounded-full opacity-60 hover:opacity-90 transition-opacity;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+   background-color: var(--knoux-neon-secondary);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--knoux-neon-primary); /* Primary on hover for contrast */
+}
+
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--knoux-neon-secondary) transparent; /* thumb and track */
+}
+.dark .custom-scrollbar {
+   scrollbar-color: var(--knoux-neon-secondary) transparent;
+}
+
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+[lang="ar"] {
+  font-family: 'El Messiri', 'Amiri', sans-serif;
+}
+
+.glass-effect {
+  @apply bg-opacity-50 backdrop-blur-md; 
+}
+.dark .glass-effect {
+   @apply bg-knoux-dark-surface/30 border-knoux-dark-primary/20; /* Reduced opacity for more background visibility */
+}
+.light .glass-effect {
+   @apply bg-knoux-light-surface/40 border-knoux-light-primary/20; /* Reduced opacity */
+}
+
+/* Dynamic AI Background */
+.dynamic-ai-background {
+  background-color: #060914; /* Darker, more techy base for dark theme */
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--knoux-neon-icy-blue) 0%, transparent 12%), /* Icy sphere */
+    radial-gradient(circle at 85% 30%, var(--knoux-neon-primary) 0%, transparent 18%), /* Purple sphere */
+    radial-gradient(circle at 40% 75%, var(--knoux-neon-secondary) 0%, transparent 15%), /* Blue sphere */
+    radial-gradient(circle at 70% 85%, var(--knoux-neon-icy-blue) 0%, transparent 10%), /* Smaller Icy sphere */
+    /* Faint lines/network simulation */
+    linear-gradient(30deg, rgba(125, 249, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(-30deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px),
+    linear-gradient(75deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+    linear-gradient(-75deg, rgba(125, 249, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px, 70px 70px, 70px 70px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 30px 30px, 0 0, 35px 35px;
+  background-blend-mode: screen; 
+  background-attachment: fixed;
+  animation: subtleAIGlowPulse 25s infinite alternate ease-in-out;
+}
+
+.light .dynamic-ai-background { 
+  background-color: #e0e8f9; /* Lighter techy base */
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--knoux-neon-icy-blue) 0%, transparent 20%),
+    radial-gradient(circle at 85% 30%, var(--knoux-neon-primary) 0%, transparent 28%),
+    radial-gradient(circle at 40% 75%, var(--knoux-neon-secondary) 0%, transparent 25%);
+  background-blend-mode: hard-light; /* Softer blend for light theme */
+  background-attachment: fixed;
+  animation: subtleAIGlowPulseLight 25s infinite alternate ease-in-out;
+}
+
+@keyframes subtleAIGlowPulse {
+  0% { filter: brightness(0.6) saturate(0.7); opacity: 0.8; }
+  100% { filter: brightness(0.9) saturate(1); opacity: 1; }
+}
+@keyframes subtleAIGlowPulseLight {
+  0% { filter: brightness(0.9) saturate(0.8); opacity: 0.85; }
+  100% { filter: brightness(1.0) saturate(1); opacity: 1; }
+}
+
+
+/* Enhanced input range slider styling */
+input[type="range"].knoux-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px; 
+  @apply rounded-lg cursor-pointer;
+}
+input[type="range"].knoux-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  @apply rounded-lg;
+}
+input[type="range"].knoux-slider::-moz-range-track {
+  height: 8px;
+  @apply rounded-lg;
+}
+input[type="range"].knoux-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px; 
+  height: 16px;
+  width: 16px;
+  @apply rounded-full shadow-md;
+}
+input[type="range"].knoux-slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  @apply rounded-full shadow-md border-none;
+}
+
+/* Theme-specific slider colors */
+.dark input[type="range"].knoux-slider {
+  background-color: theme('colors.gray.700');
+}
+.dark input[type="range"].knoux-slider::-webkit-slider-thumb {
+  background-color: var(--knoux-neon-primary);
+  box-shadow: var(--knoux-glow-primary-deep); /* Uses updated multi-tone glow */
+}
+.dark input[type="range"].knoux-slider::-moz-range-thumb {
+  background-color: var(--knoux-neon-primary);
+  box-shadow: var(--knoux-glow-primary-deep); /* Uses updated multi-tone glow */
+}
+.light input[type="range"].knoux-slider {
+  background-color: theme('colors.gray.300');
+}
+.light input[type="range"].knoux-slider::-webkit-slider-thumb {
+  background-color: var(--knoux-neon-primary);
+   box-shadow: 0 0 5px var(--knoux-neon-primary), 0 0 8px var(--knoux-neon-icy-blue); /* Simpler multi-tone glow */
+}
+.light input[type="range"].knoux-slider::-moz-range-thumb {
+  background-color: var(--knoux-neon-primary);
+  box-shadow: 0 0 5px var(--knoux-neon-primary), 0 0 8px var(--knoux-neon-icy-blue); /* Simpler multi-tone glow */
+}
+
+/* Neon focus ring for inputs */
+.neon-focus-ring-primary:focus {
+  outline: none;
+  box-shadow: var(--knoux-glow-focus-ring);
+  border-color: var(--knoux-neon-primary) !important;
+}
+.dark .neon-focus-ring-primary:focus {
+  box-shadow: var(--knoux-glow-primary-deep); /* Uses updated multi-tone glow */
+}
+
+.neon-focus-ring-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--knoux-neon-secondary), 0 0 0 4px var(--knoux-neon-icy-blue); 
+  border-color: var(--knoux-neon-secondary) !important;
+}
+.dark .neon-focus-ring-secondary:focus {
+   box-shadow: var(--knoux-glow-secondary-deep); /* Uses updated multi-tone glow */
+}
