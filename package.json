@@ -34,11 +34,14 @@
     "electron": "^31.2.1",
     "electron-builder": "^25.0.0-alpha.18",
     "typescript": "^5.5.4",
+    "@types/node": "^22.15.30",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^10.0.0",
     "tailwindcss": "^3.4.7",
     "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "concurrently": "^8.2.2"
@@ -81,12 +84,14 @@
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
       "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint",
-      "react"
+      "react",
+      "react-hooks"
     ],
     "rules": {
       "react/react-in-jsx-scope": "off",

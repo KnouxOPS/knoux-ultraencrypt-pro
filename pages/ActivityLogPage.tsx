@@ -115,8 +115,8 @@ const ActivityLogPage: React.FC = () => {
         <div className={`${isRTL ? 'text-right' : 'text-left'}`}>
             <label className={`text-sm ${isRTL ? 'ml-2' : 'mr-2'} ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{translate('filterByStatus')}:</label>
             <select 
-                value={filterStatus} 
-                onChange={e => setFilterStatus(e.target.value as any)}
+                value={filterStatus}
+                onChange={e => setFilterStatus(e.target.value as 'all' | 'success' | 'failure' | 'info')}
                 className={`p-2 rounded-md border text-sm neon-focus-ring-primary
                             ${theme === 'dark' ? 'bg-knoux-dark-bg text-gray-200 border-knoux-dark-primary/50' : 'bg-white text-gray-700 border-gray-300'}`}
             >

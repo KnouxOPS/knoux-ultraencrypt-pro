@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 import { FaUnlock, FaFileCode, FaFolderOpen, FaEye, FaEyeSlash, FaSpinner, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { useAppContext } from '../contexts/AppContext';
 import StyledButton from '../components/shared/StyledButton';
-import { EncryptionAlgorithm, AlgorithmOption, DecryptFileInfo } from '../types'; // Assuming DecryptFileInfo
+import { EncryptionAlgorithm } from '../types';
+import type { FileWithPath } from 'react-dropzone';
 import { AVAILABLE_ALGORITHMS } from '../constants';
 
 // Helper to get file path for Electron (conceptual)
 const getElectronFilePath = (file: File): string | undefined => {
-  return (file as any).path || (file as File & { webkitRelativePath?: string }).webkitRelativePath;
+  const withPath = file as FileWithPath;
+  return withPath.path || withPath.webkitRelativePath;
 };
 
 
@@ -112,13 +114,14 @@ const DecryptPage: React.FC = () => {
       } else {
         throw new Error(result.error || translate('decryptionFailed'));
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Decryption error:", error);
+      const message = error instanceof Error ? error.message : translate('decryptionFailed');
       setProcessStatus('error');
-      setProcessMessage(error.message || translate('decryptionFailed'));
+      setProcessMessage(message);
       addLogEntry({
         operation: 'decrypt',
-        details: `Failed to decrypt "${selectedEncryptedFile!.name}". Error: ${error.message}`,
+        details: `Failed to decrypt "${selectedEncryptedFile!.name}". Error: ${message}`,
         status: 'failure',
         targetFile: encryptedPath,
         algorithmUsed: algorithm,

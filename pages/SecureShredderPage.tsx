@@ -3,10 +3,12 @@ import { motion } from 'framer-motion';
 import { FaTrashAlt, FaExclamationTriangle, FaFile, FaSpinner, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { useAppContext } from '../contexts/AppContext';
 import StyledButton from '../components/shared/StyledButton';
+import type { FileWithPath } from 'react-dropzone';
 
 // Helper to get file path for Electron (conceptual)
 const getElectronFilePath = (file: File): string | undefined => {
-  return (file as any).path || (file as File & { webkitRelativePath?: string }).webkitRelativePath;
+  const withPath = file as FileWithPath;
+  return withPath.path || withPath.webkitRelativePath;
 };
 
 const SecureShredderPage: React.FC = () => {
@@ -79,13 +81,14 @@ const SecureShredderPage: React.FC = () => {
       } else {
         throw new Error(result.error || translate('shredFailed'));
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Shredding error:", error);
+      const message = error instanceof Error ? error.message : translate('shredFailed');
       setProcessStatus('error');
-      setProcessMessage(error.message || translate('shredFailed'));
+      setProcessMessage(message);
       addLogEntry({
         operation: 'shred',
-        details: `Failed to shred file "${selectedFile.name}". Error: ${error.message}`,
+        details: `Failed to shred file "${selectedFile.name}". Error: ${message}`,
         status: 'failure',
         targetFile: filePathToShred,
       });
