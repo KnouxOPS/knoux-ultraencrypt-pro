@@ -125,10 +125,16 @@ This project currently provides the **USER INTERFACE (FRONTEND)** and **structur
 1.  Clone the repository.
 2.  Install dependencies:
     ```bash
-    npm install 
+    npm install
     # or
     # yarn install
     ```
+
+### Running Tests
+Execute unit tests with Jest and React Testing Library:
+```bash
+npm test
+```
 
 ### Running the Application (Frontend + Electron Shell)
 The provided `package.json` includes scripts to help run the Electron application.

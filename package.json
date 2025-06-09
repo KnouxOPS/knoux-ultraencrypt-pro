@@ -19,29 +19,41 @@
     "package:win": "npm run package -- --win",
     "package:mac": "npm run package -- --mac",
     "package:linux": "npm run package -- --linux",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "test": "jest"
   },
   "dependencies": {
+    "framer-motion": "^12.16.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2",
-    "framer-motion": "^12.16.0",
+    "react-dropzone": "^14.3.8",
     "react-icons": "^5.5.0",
-    "uuid": "^11.1.0",
-    "react-dropzone": "^14.3.8"
+    "react-router-dom": "^7.6.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "electron": "^31.2.1",
-    "electron-builder": "^25.0.0-alpha.18",
-    "typescript": "^5.5.4",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^10.0.0",
-    "tailwindcss": "^3.4.7",
-    "eslint": "^8.57.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "electron": "^31.2.1",
+    "electron-builder": "^25.0.0-alpha.18",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.0.0-beta.3",
+    "tailwindcss": "^3.4.7",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.5.4"
   },
   "build": {
     "appId": "com.knoux.ultraencryptpro",
@@ -86,7 +98,8 @@
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint",
-      "react"
+      "react",
+      "react-hooks"
     ],
     "rules": {
       "react/react-in-jsx-scope": "off",
