@@ -1,7 +1,6 @@
 // electron/main.ts
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import path from 'path';
-import fs from 'fs'; // Node.js File System module for backend operations
 // import crypto from 'crypto'; // Node.js Crypto module for backend operations
 // TODO (Backend): Import actual crypto libraries and utility functions as needed.
 
@@ -91,7 +90,7 @@ app.on('activate', () => {
 // });
 
 // System Dialogs
-ipcMain.handle('select-file', async (event, options) => {
+ipcMain.handle('select-file', async (_unusedEvent, options) => {
   if (!mainWindow) return null;
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
@@ -101,7 +100,7 @@ ipcMain.handle('select-file', async (event, options) => {
   return result.filePaths[0] || null;
 });
 
-ipcMain.handle('select-files', async (event, options) => {
+ipcMain.handle('select-files', async (_unusedEvent, options) => {
   if (!mainWindow) return null;
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile', 'multiSelections'],
@@ -111,7 +110,7 @@ ipcMain.handle('select-files', async (event, options) => {
   return result.filePaths || null;
 });
 
-ipcMain.handle('select-directory', async (event, options) => {
+ipcMain.handle('select-directory', async (_unusedEvent, options) => {
   if (!mainWindow) return null;
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openDirectory'],
@@ -135,26 +134,26 @@ ipcMain.handle('show-success-message', (event, title, content) => {
 // --- TODO (Backend): Implement these IPC Handlers ---
 
 // Cryptographic Operations
-ipcMain.handle('encrypt-file', async (event, ...args) => {
+ipcMain.handle('encrypt-file', async () => {
   console.warn('IPC: encrypt-file called, but backend logic is a TODO.');
   // const [originalFilePath, outputDirectoryPath, passwordKey, algorithm, shredOriginal] = args;
   // Actual implementation needed here
   return { success: false, error: 'encryptFile not implemented in backend' };
 });
 
-ipcMain.handle('decrypt-file', async (event, ...args) => {
+ipcMain.handle('decrypt-file', async () => {
   console.warn('IPC: decrypt-file called, but backend logic is a TODO.');
   // const [encryptedFilePath, outputDirectoryPath, passwordKey, algorithm, iv, salt, authTag, shredEncrypted] = args;
   return { success: false, error: 'decryptFile not implemented in backend' };
 });
 
-ipcMain.handle('shred-file', async (event, filePath, passes) => {
+ipcMain.handle('shred-file', async () => {
   console.warn('IPC: shred-file called, but backend logic is a TODO.');
   // Actual implementation needed here using fs to overwrite and delete
   return { success: false, error: 'shredFile not implemented in backend' };
 });
 
-ipcMain.handle('generate-password', async (event, options) => {
+ipcMain.handle('generate-password', async () => {
   console.warn('IPC: generate-password called, but backend logic is a TODO using node:crypto.');
   // Actual implementation needed here using crypto.randomBytes
   // Example (very basic, improve with options):
@@ -169,7 +168,7 @@ ipcMain.handle('generate-password', async (event, options) => {
 });
 
 // Vault Management
-ipcMain.handle('create-vault-directory', async (event, vaultDirectoryPath, vaultName) => {
+ipcMain.handle('create-vault-directory', async () => {
   console.warn('IPC: create-vault-directory called, but backend logic is a TODO.');
   // 1. Create directory at vaultDirectoryPath/vaultName
   // 2. Create a metadata file (e.g., vault.knxmeta) inside it.
@@ -180,14 +179,14 @@ ipcMain.handle('create-vault-directory', async (event, vaultDirectoryPath, vault
   return { success: false, error: 'createVaultDirectory not implemented' };
 });
 
-ipcMain.handle('delete-vault-directory', async (event, vaultDirectoryPath) => {
+ipcMain.handle('delete-vault-directory', async () => {
   console.warn('IPC: delete-vault-directory called, but backend logic is a TODO.');
   // Securely delete the directory and its contents.
   // fs.rmSync(vaultDirectoryPath, { recursive: true, force: true });
   return { success: false, error: 'deleteVaultDirectory not implemented' };
 });
 
-ipcMain.handle('list-vault-contents', async (event, vaultDirectoryPath) => {
+ipcMain.handle('list-vault-contents', async () => {
   console.warn('IPC: list-vault-contents called, but backend logic is a TODO.');
   // Read metadata file or scan vault directory for encrypted files.
   // const files = [ { name: 'encrypted_doc.knxenc', path: path.join(vaultDirectoryPath, 'encrypted_doc.knxenc'), originalSize: 102400 }];

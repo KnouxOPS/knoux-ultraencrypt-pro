@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { FaLock, FaShieldAlt, FaCog, FaPalette, FaLanguage, FaHdd, FaQuestionCircle, FaDownload, FaUpload, FaKey, FaTrashAlt } from 'react-icons/fa';
+import { FaLock, FaShieldAlt, FaPalette, FaLanguage, FaDownload, FaUpload, FaKey, FaTrashAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../contexts/AppContext';
 import StyledButton from '../components/shared/StyledButton';

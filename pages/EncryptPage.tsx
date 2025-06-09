@@ -1,17 +1,18 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaLock, FaFileAlt, FaFolder, FaEye, FaEyeSlash, FaSpinner, FaCheckCircle, FaTimesCircle, FaShieldAlt } from 'react-icons/fa';
 import { useAppContext } from '../contexts/AppContext';
 import StyledButton from '../components/shared/StyledButton';
-import { EncryptionAlgorithm, EncryptFileInfo } from '../types'; // AlgorithmOption removed as it was unused
+import { EncryptionAlgorithm } from '../types';
+import type { FileWithPath } from 'react-dropzone';
 import { AVAILABLE_ALGORITHMS } from '../constants';
 // import FileDropzone from '../components/shared/FileDropzone'; // Assuming FileDropzone is created
 
 // Helper to get file path for Electron (conceptual)
 const getElectronFilePath = (file: File): string | undefined => {
-  // In Electron, File objects from a dialog or drop might have a 'path' property.
-  return (file as any).path || (file as File & { webkitRelativePath?: string }).webkitRelativePath;
+  const withPath = file as FileWithPath;
+  return withPath.path || withPath.webkitRelativePath;
 };
 
 
@@ -119,13 +120,14 @@ const EncryptPage: React.FC = () => {
       } else {
         throw new Error(result.error || translate('encryptionFailed'));
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Encryption error:", error);
+      const message = error instanceof Error ? error.message : translate('encryptionFailed');
       setProcessStatus('error');
-      setProcessMessage(error.message || translate('encryptionFailed'));
+      setProcessMessage(message);
       addLogEntry({
         operation: 'encrypt',
-        details: `Failed to encrypt "${fileToEncrypt.name}". Error: ${error.message}`,
+        details: `Failed to encrypt "${fileToEncrypt.name}". Error: ${message}`,
         status: 'failure',
         targetFile: originalPath,
         algorithmUsed: algorithm,

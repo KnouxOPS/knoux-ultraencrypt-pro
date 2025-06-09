@@ -8,7 +8,8 @@ import { PasswordGenerationOptions, AIPasswordStrengthResult } from '../types';
 const KeyStrengthBar: React.FC<{ score: number; textLabel: string; colorClass: string; isRTL: boolean }> = ({ score, textLabel, colorClass, isRTL }) => {
   const { theme, translate } = useAppContext();
   const segments = 5;
-  const activeSegments = Math.max(1, Math.min(segments, Math.ceil(score))); 
+  // Use zero active segments for score 0 instead of forcing at least one
+  const activeSegments = Math.max(0, Math.min(segments, Math.ceil(score)));
 
   const strengthColors = [
     'bg-red-500',          // Too Short / Very Weak (score 0)
@@ -64,7 +65,7 @@ const KeyGeneratorPage: React.FC = () => {
   const mapAIScoreToLocal = (aiResult: AIPasswordStrengthResult): { score: number; labelKey: string; colorClass: string; feedback?: string } => {
     let labelKey = 'keyStrengthWeak';
     let colorClass = 'text-orange-400 dark:text-orange-300';
-    let feedback = aiResult.feedback?.warning || aiResult.feedback?.suggestions?.join(' ') || '';
+    const feedback = aiResult.feedback?.warning || aiResult.feedback?.suggestions?.join(' ') || '';
 
     switch (aiResult.score) {
       case 0: labelKey = 'keyStrengthTooShort'; colorClass = 'text-red-400 dark:text-red-300'; break;

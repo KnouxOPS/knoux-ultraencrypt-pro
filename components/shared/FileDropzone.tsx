@@ -67,7 +67,6 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
         input.type = 'file';
         input.multiple = multiple;
         if (selectMode === 'folder') {
-            // @ts-ignore 
             input.webkitdirectory = true;
         }
         if (accept) {

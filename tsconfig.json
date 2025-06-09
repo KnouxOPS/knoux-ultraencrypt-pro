@@ -24,6 +24,15 @@
     "forceConsistentCasingInFileNames": true,
      "types": ["node"] // Added node types for broader compatibility if any Node.js specific types are used in shared code
   },
-  "include": ["src", "index.tsx", "types.ts", "constants.ts", "contexts/AppContext.tsx", "components/**/*.tsx", "pages/**/*.tsx", "App.tsx", "electron/preload.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "index.tsx",
+    "types.ts",
+    "constants.ts",
+    "contexts/AppContext.tsx",
+    "components/**/*.tsx",
+    "pages/**/*.tsx",
+    "App.tsx",
+    "electron/preload.ts"
+  ]
 }
